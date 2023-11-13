@@ -1,0 +1,147 @@
+p,
+h1 {
+  margin: 0;
+}
+
+.visually-hidden {
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  border: 0;
+  padding: 0;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  margin: -1px;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  padding: 50px 0px 50px 0px;
+  margin: auto;
+}
+.section {
+  border: 1px solid black;
+  border-radius: 10px;
+
+  padding: 30px;
+}
+
+.groundTitle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-bottom: 30px;
+}
+
+.startForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  gap: 20px;
+}
+
+.inputLabel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 30px;
+}
+
+.button {
+  min-width: 150px;
+  padding: 10px;
+  font-size: 20px;
+
+  border: 1px solid gray;
+  border-radius: 5px;
+
+  transition: background-color 300ms linear, color 300ms linear;
+}
+
+.startButton {
+  background-color: #499cfc;
+
+  &:hover,
+  &:focus {
+    color: white;
+    background-color: #0075ff;
+    cursor: pointer;
+  }
+}
+
+.resetButton {
+  background-color: #da584f;
+
+  &:hover,
+  &:focus {
+    color: white;
+    background-color: #ff3c19;
+    cursor: pointer;
+  }
+}
+
+#playground {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-bottom: 30px;
+}
+
+#controller {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+
+  gap: 12px;
+
+  width: 100%;
+}
+
+.scoreWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 20px;
+}
+
+.gameGrid {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+
+.gameGridItem {
+  width: 40px;
+  height: 40px;
+  font-size: 40px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid black;
+
+  &:hover,
+  &:focus {
+    cursor: pointer;
+
+    -webkit-box-shadow: inset 0px 0px 5px 2px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: inset 0px 0px 5px 2px rgba(0, 0, 0, 0.75);
+    box-shadow: inset 0px 0px 5px 2px rgba(0, 0, 0, 0.75);
+  }
+}

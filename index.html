@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./styles.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="section">
+        <div class="groundTitle">
+          <h1>ONE TOUCH</h1>
+        </div>
+        <div id="playground">
+          <form class="startForm">
+            <p style="font-size: 25px">Select playground size</p>
+            <label class="inputLabel">
+              <p class="rangeOutputText">1</p>
+              <input id="rangeInput" type="range" value="6" min="4" max="8" />
+            </label>
+            <button type="submit" class="button startButton">START</button>
+          </form>
+          <div class="gameGrid"></div>
+        </div>
+        <div id="controller">
+          <div class="scoreWrapper">
+            <div>
+              <p id="score"></p>
+              <p id="touches"></p>
+            </div>
+            <div style="text-align: end">
+              <p id="bestScore"></p>
+              <p id="bestTouches"></p>
+            </div>
+          </div>
+          <button class="button resetButton">RESET</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="./scripts/index.js"></script>
+  </body>
+</html>
