@@ -22,7 +22,7 @@ let playerStats = {
 let startGame = null;
 
 rangeOutput.textContent = rangeInput.value;
-bestScore.textContent = `BEST SCORE / TOUCHES : ${playerStats.bestScore} / ${playerStats.bestTouches}`;
+bestScore.textContent = `${playerStats.bestScore} / ${playerStats.bestTouches}`;
 
 rangeInput.addEventListener("input", updateRangeOutput);
 
@@ -42,7 +42,7 @@ function handleStartButtonClick(event) {
   playerStats.score = 0;
   playerStats.touches = 0;
 
-  score.textContent = `SCORE/TOUCHES : ${playerStats.score} / ${playerStats.touches}`;
+  score.textContent = `SCORE / TOUCHES : ${playerStats.score} / ${playerStats.touches}`;
 
   startGame = new Game(
     parseInt(rangeInput.value) + 1,
@@ -84,12 +84,12 @@ class Game {
   getRandomSymbol() {
     const randomValue = Math.random();
     return randomValue < 0.25
-      ? "♣"
+      ? "&#127936;"
       : randomValue < 0.5
-      ? "♠"
+      ? "&#129358;"
       : randomValue < 0.75
-      ? "♥"
-      : "♦";
+      ? "&#9917;"
+      : "&#127921;";
   }
 
   fillGrid() {
@@ -150,7 +150,7 @@ class Game {
         if (this.grid[i][j] === null) {
           this.grid[i][j] = this.getRandomSymbol();
           playerStats.score++;
-          score.textContent = `SCORE/TOUCHES : ${playerStats.score} / ${playerStats.touches}`;
+          score.textContent = `SCORE / TOUCHES : ${playerStats.score} / ${playerStats.touches}`;
           console.log(playerStats.score);
         }
       }
@@ -161,7 +161,7 @@ class Game {
       localStorage.setItem("bestScore", playerStats.bestScore);
       localStorage.setItem("bestTouches", playerStats.bestTouches);
 
-      bestScore.textContent = `BEST SCORE / TOUCHES : ${playerStats.bestScore} / ${playerStats.bestTouches}`;
+      bestScore.textContent = `${playerStats.bestScore} / ${playerStats.bestTouches}`;
     }
     this.renderGrid();
   }

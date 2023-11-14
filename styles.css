@@ -3,6 +3,10 @@ h1 {
   margin: 0;
 }
 
+body {
+  font-family: "Space Mono", monospace;
+}
+
 .visually-hidden {
   position: absolute;
   white-space: nowrap;
@@ -29,7 +33,9 @@ h1 {
   border: 1px solid black;
   border-radius: 10px;
 
-  padding: 30px;
+  padding: 15px 0px 30px 0px;
+
+  background: linear-gradient(0deg, #6eb5c080 0%, #006c8479 100%);
 }
 
 .groundTitle {
@@ -38,6 +44,10 @@ h1 {
   justify-content: center;
 
   margin-bottom: 30px;
+  padding-bottom: 15px;
+
+  border-bottom: 1px solid black;
+  border-radius: 10px;
 }
 
 .startForm {
@@ -58,35 +68,73 @@ h1 {
   font-size: 30px;
 }
 
+#rangeInput {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 5px;
+  border-radius: 5px;
+  background: #e2e8e4;
+  outline: none;
+  opacity: 0.8;
+  -webkit-transition: 0.2s;
+  transition: background 0.2s linear;
+
+  &:hover {
+    background: whitesmoke;
+  }
+}
+
+#rangeInput::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 25px;
+  height: 10px;
+  border-radius: 40px;
+  background: #006c84;
+  cursor: pointer;
+}
+
+#rangeInput::-moz-range-thumb {
+  width: 25px;
+  height: 10px;
+  border-radius: 40px;
+  background: #006c84;
+  cursor: pointer;
+}
+
 .button {
   min-width: 150px;
   padding: 10px;
   font-size: 20px;
 
-  border: 1px solid gray;
+  border: 1px solid rgb(0, 0, 0);
   border-radius: 5px;
 
   transition: background-color 300ms linear, color 300ms linear;
+
+  box-shadow: 1px 2px 5px 0px rgba(0, 0, 0, 0.75);
+  -webkit-box-shadow: 1px 2px 5px 0px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 1px 2px 5px 0px rgba(0, 0, 0, 0.75);
 }
 
 .startButton {
-  background-color: #499cfc;
+  background-color: #e2e8e4;
 
   &:hover,
   &:focus {
     color: white;
-    background-color: #0075ff;
+    background-color: #6eb5c0;
     cursor: pointer;
   }
 }
 
 .resetButton {
-  background-color: #da584f;
+  background-color: #ffccbb;
 
   &:hover,
   &:focus {
     color: white;
-    background-color: #ff3c19;
+    background-color: #f8aa90;
     cursor: pointer;
   }
 }
@@ -96,7 +144,7 @@ h1 {
   align-items: center;
   justify-content: center;
 
-  margin-bottom: 30px;
+  margin: 0px 30px 30px 30px;
 }
 
 #controller {
@@ -120,17 +168,24 @@ h1 {
   gap: 20px;
 }
 
+.bestScoreWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
 .gameGrid {
   display: flex;
   align-items: flex-start;
-  justify-content: flex-start;
+  justify-content: center;
   flex-wrap: wrap;
 }
 
 .gameGridItem {
   width: 40px;
   height: 40px;
-  font-size: 40px;
+  font-size: 28px;
 
   display: flex;
   align-items: center;
