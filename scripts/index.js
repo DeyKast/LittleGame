@@ -7,30 +7,22 @@ const rangeOutput = document.querySelector(".rangeOutputText");
 const startButton = document.querySelector(".startButton");
 
 const score = document.querySelector("#score");
-const touches = document.querySelector("#touches");
 
 const bestScore = document.querySelector("#bestScore");
-const bestTouches = document.querySelector("#bestTouches");
 
 const resetButton = document.querySelector(".resetButton");
 
 let playerStats = {
   score: 0,
   touches: 0,
-
-  bestScore: 0,
-  bestTouches: 0,
+  bestScore: localStorage.getItem("bestScore") || 0,
+  bestTouches: localStorage.getItem("bestTouches") || 0,
 };
 
 let startGame = null;
 
 rangeOutput.textContent = rangeInput.value;
-
-score.textContent = `SCORE : ${playerStats.score}`;
-touches.textContent = `TOUCHES : ${playerStats.touches}`;
-
-bestScore.textContent = `BEST SCORE : ${playerStats.bestScore}`;
-bestTouches.textContent = `TOUCHES : ${playerStats.bestTouches}`;
+bestScore.textContent = `BEST SCORE / TOUCHES : ${playerStats.bestScore} / ${playerStats.bestTouches}`;
 
 rangeInput.addEventListener("input", updateRangeOutput);
 
@@ -46,11 +38,16 @@ function updateRangeOutput(event) {
 
 function handleStartButtonClick(event) {
   event.preventDefault();
+
+  playerStats.score = 0;
+  playerStats.touches = 0;
+
+  score.textContent = `SCORE/TOUCHES : ${playerStats.score} / ${playerStats.touches}`;
+
   startGame = new Game(
     parseInt(rangeInput.value) + 1,
     parseInt(rangeInput.value)
   );
-  startGame.logGrid();
 }
 
 function handleResetButtonClick() {
@@ -60,6 +57,8 @@ function handleResetButtonClick() {
 }
 
 function handleGameGridClick(event) {
+  playerStats.touches++;
+
   startGame.removeGridItem(
     event.target.getAttribute("row"),
     event.target.getAttribute("col")
@@ -114,12 +113,6 @@ class Game {
     gameGrid.style.cssText = `width: ${42 * (this.grid.length - 1)}px`;
     startForm.classList.add("visually-hidden");
     gameGrid.innerHTML = markGrid;
-
-    this.logGrid();
-  }
-
-  logGrid() {
-    console.table(this.grid);
   }
 
   removeGridItem(row, col) {
@@ -146,7 +139,6 @@ class Game {
       if (r >= 0 && r < this.grid.length && c >= 0 && c < this.grid[0].length) {
         if (this.grid[r][c] === type) {
           this.removeGridItem(r, c);
-          this.removeConnectedGridItems(r, c, type);
         }
       }
     }
@@ -157,8 +149,19 @@ class Game {
       for (let j = 0; j < this.grid[i].length; j++) {
         if (this.grid[i][j] === null) {
           this.grid[i][j] = this.getRandomSymbol();
+          playerStats.score++;
+          score.textContent = `SCORE/TOUCHES : ${playerStats.score} / ${playerStats.touches}`;
+          console.log(playerStats.score);
         }
       }
+    }
+    if (playerStats.score >= playerStats.bestScore) {
+      playerStats.bestScore = playerStats.score;
+      playerStats.bestTouches = playerStats.touches;
+      localStorage.setItem("bestScore", playerStats.bestScore);
+      localStorage.setItem("bestTouches", playerStats.bestTouches);
+
+      bestScore.textContent = `BEST SCORE / TOUCHES : ${playerStats.bestScore} / ${playerStats.bestTouches}`;
     }
     this.renderGrid();
   }
